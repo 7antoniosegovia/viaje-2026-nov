@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="pressbox">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RUTA SUR — Dallas · Atlanta · Orlando · Miami</title>
+<meta name="description" content="Guía de campo del viaje 6–23 noviembre 2026: partidos, parques, seguridad y planes.">
+<meta name="theme-color" content="#0B0B0C">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="RUTA SUR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Alfa+Slab+One&family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+
+<header class="masthead">
+  <div class="masthead__top">
+    <span class="masthead__kicker">Guía de campo · nov 2026</span>
+    <div class="theme-switch" role="group" aria-label="Cambiar tema visual">
+      <button type="button" data-set-theme="pressbox" aria-pressed="true">Press Box</button>
+      <button type="button" data-set-theme="postcard" aria-pressed="false">Postcard 66</button>
+    </div>
+  </div>
+  <h1 class="masthead__title"><span>Ruta</span><span class="hollow">Sur</span></h1>
+  <div class="masthead__meta">
+    <span class="masthead__route">Dallas <b>→</b> Atlanta <b>→</b> Orlando <b>→</b> Miami</span>
+    <span>Antonio + Ferran · 17 noches · 5 partidos</span>
+  </div>
+  <span class="stamp-year">2026</span>
+</header>
+
+<main>
+
+<section id="tab-ruta" class="tab is-active" data-tab="ruta">
+  <div class="section-head">
+    <h2>Ruta día a día</h2>
+    <span class="count" id="days-count"></span>
+  </div>
+  <p class="section-intro">Cada tramo tiene varias opciones: marcá la que elijáis (se guarda en vuestro móvil). Lo que no se mueve va en ticket rojo.</p>
+  <details class="reservas" id="reservas">
+    <summary>Reservas y billetes <span class="pend" id="res-pend"></span></summary>
+    <div class="reservas__body" id="reservas-body"></div>
+  </details>
+  <div class="daynav" id="daynav" aria-label="Saltar al día"></div>
+  <div class="days" id="days"></div>
+  <p class="footer-note">Editad <b>data.js</b> para cambiar reservas y precios<br>RUTA SUR · noviembre 2026</p>
+</section>
+
+<section id="tab-juegos" class="tab" data-tab="juegos">
+  <div class="section-head">
+    <h2>Partidos</h2>
+    <span class="count">5 entradas</span>
+  </div>
+  <p class="section-intro">Tres noches seguidas en el AAC de Dallas, los Lakers a la vuelta y los Chiefs en el Mercedes-Benz.</p>
+  <div class="games" id="games"></div>
+</section>
+
+<section id="tab-ciudades" class="tab" data-tab="ciudades">
+  <div class="section-head">
+    <h2>Ciudades</h2>
+    <span class="count">seguridad · dónde comer</span>
+  </div>
+  <div class="city-tabs" id="city-tabs" role="tablist"></div>
+  <div id="city-panels"></div>
+</section>
+
+<section id="tab-parques" class="tab" data-tab="parques">
+  <div class="section-head">
+    <h2>Parques</h2>
+    <span class="count">3 días · adrenalina · colas</span>
+  </div>
+  <p class="section-intro">Orden de ataque, cuándo subir a cada atracción (adrenalina 1–5) y dónde comer dentro. Noviembre entre semana juega a vuestro favor.</p>
+  <div class="parks" id="parks"></div>
+</section>
+
+<section id="tab-maleta" class="tab" data-tab="maleta">
+  <div class="section-head">
+    <h2>Maleta</h2>
+    <span class="count">checklists</span>
+  </div>
+  <div class="checklists" id="checklists"></div>
+</section>
+
+<section id="tab-guia" class="tab" data-tab="guia">
+  <div class="section-head">
+    <h2>Guía USA</h2>
+    <span class="count">propinas · ley · 911</span>
+  </div>
+  <div class="guide" id="guide"></div>
+  <p class="footer-note">Todo verificado en calendarios oficiales, foros locales y precios de taquilla · 2026</p>
+</section>
+
+</main>
+
+<nav class="tabbar" id="tabbar" aria-label="Secciones">
+  <button type="button" data-tab="ruta" class="is-active">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l5-3 6 2 5-4"/><circle cx="4" cy="20" r="1.6"/><circle cx="9" cy="17" r="1.6"/><circle cx="15" cy="19" r="1.6"/><circle cx="20" cy="15" r="1.6"/><path d="M9 17V8a3 3 0 013-3h3"/></svg>
+    <span>Ruta</span>
+  </button>
+  <button type="button" data-tab="juegos">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9V7a2 2 0 012-2h14a2 2 0 012 2v2a2 2 0 000 6v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2a2 2 0 000-6z"/><path d="M14 5v14" stroke-dasharray="2 2.5"/></svg>
+    <span>Juegos</span>
+  </button>
+  <button type="button" data-tab="ciudades">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V9l5-3v15"/><path d="M14 21V4l5 3v14"/><path d="M7 12h1M7 15h1M16 10h1M16 13h1M16 16h1"/></svg>
+    <span>Ciudades</span>
+  </button>
+  <button type="button" data-tab="parques">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="10" r="7"/><path d="M12 3v14M5 10h14M7 5l10 10M17 5L7 15"/><path d="M9 21l3-4 3 4"/></svg>
+    <span>Parques</span>
+  </button>
+  <button type="button" data-tab="maleta">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v13H4z"/><path d="M9 7V5a3 3 0 016 0v2"/><path d="M8 12l2 2 4-4"/></svg>
+    <span>Maleta</span>
+  </button>
+  <button type="button" data-tab="guia">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg>
+    <span>Guía</span>
+  </button>
+</nav>
+
+</div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
