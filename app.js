@@ -350,6 +350,29 @@
 
   /* ── ciudades ── */
 
+  var PLAN_EX_SLOT = { estrategia: 1, comida: 1 };
+  var PLAN_EX_TAG = { "logística": 1, "ruta": 1 };
+
+  function cityPlans(code) {
+    var groups = [];
+    DAYS.forEach(function (day) {
+      if (day.city !== code) return;
+      var items = [];
+      (day.fixed || []).forEach(function (f) {
+        if (f.ticket) items.push({ src: f, slot: f.time });
+      });
+      (day.blocks || []).forEach(function (b) {
+        if (PLAN_EX_SLOT[b.slot]) return;
+        (b.options || []).forEach(function (o) {
+          if (PLAN_EX_TAG[String(o.tag || "").toLowerCase()]) return;
+          items.push({ src: o, slot: b.slot });
+        });
+      });
+      if (items.length) groups.push({ day: day, items: items });
+    });
+    return groups;
+  }
+
   function renderCities() {
     var tabs = "";
     var panels = "";
@@ -380,6 +403,40 @@
         p += '<div class="stay__addr"><a class="maplink" href="' + esc(maps(c.stay.addr)) + '" target="_blank" rel="noopener">' + esc(c.stay.addr) + " → mapa</a></div>";
         p += '<div class="stay__note">' + esc(c.stay.note) + "</div></div></div>";
       }
+
+      /* lista de planes de la ciudad (referencia si no se sigue la ruta) */
+      var planGroups = cityPlans(k);
+      var planCount = planGroups.reduce(function (n, g) { return n + g.items.length; }, 0);
+      var stayAnchor = c.stay ? (poiCoords(c.stay.name + ", " + c.stay.addr) || poiCoords(c.stay.addr)) : null;
+      p += '<div class="city-block"><details class="plans"><summary>Planes <i>(' + planCount + ")</i></summary>";
+      planGroups.forEach(function (g) {
+        var dayLabel = g.day.day + " " + Number(g.day.date.slice(8));
+        p += '<div class="plans__day"><b>' + esc(dayLabel) + "</b><span>" + esc(g.items.length) + " planes</span></div>";
+        g.items.forEach(function (it) {
+          var o = it.src;
+          var anchor = poiCoords(o.maps) || stayAnchor;
+          var tagLabel = o.tag || it.slot || "";
+          p += '<div class="cplan">';
+          p += '<div class="cplan__main"><span class="opt__tag" data-tag="' + esc(normTag(tagLabel)) + '">' + esc(tagLabel) + "</span>";
+          p += "<b>" + esc(o.title) + "</b>";
+          var meta = [];
+          if (o.price) meta.push(o.price);
+          if (o.hours) meta.push(o.hours);
+          if (anchor && stayAnchor) {
+            var dk = haversine(anchor, stayAnchor);
+            if (dk > 0.05) meta.push(fmtKm(dk) + " del alojamiento");
+          }
+          if (meta.length) p += '<span class="cplan__meta">' + esc(meta.join(" · ")) + "</span>";
+          p += "</div>";
+          p += '<div class="cplan__acts">';
+          if (o.ticket) p += '<a class="cplan__buy" href="' + esc(o.ticket) + '" target="_blank" rel="noopener">Entradas</a>';
+          if (o.maps) p += '<a class="cplan__map" href="' + esc(maps(o.maps)) + '" target="_blank" rel="noopener">Mapa</a>';
+          p += nearBtn(anchor, k, dayLabel + " · " + o.title);
+          p += "</div></div>";
+        });
+      });
+      if (!planCount) p += '<p class="cplan__empty">Sin planes listados.</p>';
+      p += "</details></div>";
 
       p += '<div class="city-block"><h4>Zonas y seguridad</h4>';
       c.safety.zones.forEach(function (z) {

@@ -2040,3 +2040,107 @@ html[data-theme="postcard"] .near__hours::before { color: var(--orl, var(--accen
 }
 
 .stub__buy:hover { background: var(--paper-ink); color: var(--paper); }
+
+/* ── planes por ciudad (lista de referencia) ── */
+
+.plans summary {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--bg3);
+  border: 1px solid var(--line);
+  padding: 10px 11px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  user-select: none;
+}
+
+.plans summary::-webkit-details-marker { display: none; }
+.plans summary::after { content: "+"; font-size: 14px; color: var(--accent); font-weight: 700; }
+.plans[open] summary::after { content: "–"; }
+.plans summary i { font-style: normal; color: var(--accent); }
+.plans summary:hover { border-color: var(--accent); }
+
+.plans__day {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 12px 0 5px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.plans__day b {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.plans__day span {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.cplan {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 9px 10px;
+  border: 1px solid var(--line-soft);
+  background: var(--bg3);
+  border-radius: var(--radius);
+  margin-bottom: 6px;
+}
+
+.cplan__main { display: flex; flex-direction: column; gap: 3px; align-items: flex-start; }
+.cplan__main b { font-size: 13.5px; line-height: 1.3; }
+
+.cplan__meta {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--ink-faint);
+  letter-spacing: .02em;
+}
+
+.cplan__acts { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.cplan__acts a,
+.cplan .opt__near {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink-dim);
+  border: 1px solid var(--line) !important;
+  padding: 5px 8px;
+  background: var(--bg);
+}
+
+.cplan__acts a:hover,
+.cplan .opt__near:hover { background: var(--accent); border-color: var(--accent) !important; color: var(--accent-ink); }
+
+.cplan__buy {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: var(--accent-ink) !important;
+}
+
+.cplan__buy:hover { background: var(--ink) !important; border-color: var(--ink) !important; color: var(--bg) !important; }
+
+.cplan__empty { font-size: 13px; color: var(--ink-faint); padding: 8px 0 2px; }
