@@ -60,7 +60,7 @@ const DAYS = [
         options: [
           { title: "Paseo por el Arts District + el skyline", desc: "Desde Klyde Warren hacia el Nasher Sculpture Center y las fachadas del centro. Foto obligada con la Reunion Tower al fondo.", tag: "turístico", maps: "Nasher Sculpture Center, 2001 Flora St, Dallas, TX" },
           { title: "Dallas Farmers Market (The Shed)", desc: "Mercado real con puestos locales + el food hall. Hurtado BBQ dentro si aún no os habéis hartado de carne.", tag: "auténtico", price: "entrada gratis, comida aparte", maps: "Dallas Farmers Market, 920 S Harwood St, Dallas, TX" },
-          { title: "Dealey Plaza + JFK Memorial", desc: "El sitio del atentado a JFK. El Sixth Floor Museum cierra lun-mar (hoy viernes está abierto 10–17).", tag: "turístico", price: "museo $24 online / $27 taquilla", maps: "Dealey Plaza, Dallas" }
+          { title: "Dealey Plaza + JFK Memorial", desc: "El sitio del atentado a JFK. El Sixth Floor Museum cierra lun-mar (hoy viernes está abierto 10–17).", tag: "turístico", price: "museo $24 online / $27 taquilla", ticket: "https://tickets.jfk.org/webstore/landingpage?CG=OT&C=GA", maps: "Dealey Plaza, Dallas" }
         ]
       },
       {
@@ -183,7 +183,7 @@ const DAYS = [
       {
         slot: "tarde", title: "Cultura civil + parque",
         options: [
-          { title: "National Center for Civil and Human Rights", desc: "100 Ivan Allen Jr Blvd. Justo al lado del acuario. El mejor museo de Atlanta para entender el movimiento por los derechos civiles. ~$20.", tag: "turístico", price: "~$20", ticket: "https://civilrightsmuseum.org/visit/", maps: "National Center for Civil and Human Rights, 100 Ivan Allen Jr Blvd NW, Atlanta, GA" },
+          { title: "National Center for Civil and Human Rights", desc: "100 Ivan Allen Jr Blvd. Justo al lado del acuario. El mejor museo de Atlanta para entender el movimiento por los derechos civiles. Cierra lunes.", tag: "turístico", price: "$26 online (+tax)", ticket: "https://www.civilandhumanrights.org/plan-your-visit/", maps: "National Center for Civil and Human Rights, 100 Ivan Allen Jr Blvd NW, Atlanta, GA" },
           { title: "Centennial Olympic Park (gratis)", desc: "El parque de las Olimpiadas del 96, con la fuente interactiva. Punto de encuentro de todo downtown.", tag: "relax", price: "gratis", maps: "Centennial Olympic Park, Atlanta, GA" },
           { title: "CNN Center Tour", desc: "Estudio de noticias en directo. Horarios variables desde 2024 — mirad web el mismo día.", tag: "turístico", maps: "CNN Center, 1 CNN Center, Atlanta, GA" }
         ]
@@ -215,7 +215,7 @@ const DAYS = [
         options: [
           { title: "★ BeltLine Eastside Trail", desc: "El antiguo anillo ferroviario convertido en paseo: patinetes, bicis, murales y gente paseando perros. Entrad por Krog Street y subid hacia Ponce. GRATIS.", tag: "auténtico", price: "gratis", maps: "Atlanta BeltLine Eastside Trail" },
           { title: "Little Five Points", desc: "El barrio 'counter-culture' de Atlanta: The Vortex (burgers gigantes con doble entrada), tiendas de discos y teatro de improvisación. Auténtico y divertido.", tag: "auténtico", price: "$15–20", maps: "Little Five Points, Atlanta" },
-          { title: "Piedmont Park + Botanical Garden", desc: "El Central Park atlantino. El jardín botánico cobra ~$25 y tiene orquídeas y canopy walk.", tag: "relax", price: "park gratis / jardín ~$25", maps: "Piedmont Park, Atlanta" }
+          { title: "Piedmont Park + Botanical Garden", desc: "El Central Park atlantino. El jardín botánico cobra ~$28 online y tiene orquídeas y canopy walk.", tag: "relax", price: "park gratis / jardín ~$28", ticket: "https://tickets.atlantabg.org/", maps: "Piedmont Park, Atlanta" }
         ]
       },
       {
@@ -235,9 +235,9 @@ const DAYS = [
       {
         slot: "mañana", title: "Opción museo o naturaleza",
         options: [
-          { title: "Atlanta Botanical Garden", desc: "1345 Piedmont Ave NE. Canopy walk entre los árboles y jardines temáticos. ~$25. Jueves menos concurrido.", tag: "relax", price: "~$25", maps: "Atlanta Botanical Garden, 1345 Piedmont Ave NE, Atlanta, GA" },
+          { title: "Atlanta Botanical Garden", desc: "1345 Piedmont Ave NE. Canopy walk entre los árboles y jardines temáticos. ~$28 online (+$5 gastos) — comprad online: ahorra $2 vs taquilla. Jueves menos concurrido.", tag: "relax", price: "~$28 online", ticket: "https://tickets.atlantabg.org/", maps: "Atlanta Botanical Garden, 1345 Piedmont Ave NE, Atlanta, GA" },
           { title: "Jimmy Carter Presidential Library", desc: "441 Freedom Pkwy NE. Gratis: historia de la presidencia y del Cártel de Camp David. Sorprendentemente bueno.", tag: "turístico", price: "gratis", maps: "Jimmy Carter Presidential Library, 441 Freedom Pkwy NE, Atlanta, GA" },
-          { title: "Zoo Atlanta", desc: "1300 Check N Dr NW. Pandas históricas (la familia llega a fin de año) y gorilas. ~$25.", tag: "turístico", price: "~$25", maps: "Zoo Atlanta, 1300 Check N Dr NW, Atlanta, GA" }
+          { title: "Zoo Atlanta", desc: "1300 Check N Dr NW. Pandas históricas (la familia llega a fin de año) y gorilas. ~$25.", tag: "turístico", price: "~$25", ticket: "https://zooatlanta.org/tickets/", maps: "Zoo Atlanta, 1300 Check N Dr NW, Atlanta, GA" }
         ]
       },
       {
@@ -250,7 +250,7 @@ const DAYS = [
       {
         slot: "noche", title: "Última noche tranquila",
         options: [
-          { title: "Fox Theater", desc: "660 Peachtree St NE. Si hay concierto u obra: el interior es un palacio mogol de 1929. Merece aunque no entréis.", tag: "turístico", maps: "Fox Theatre, 660 Peachtree St NE, Atlanta, GA" },
+          { title: "Fox Theater", desc: "660 Peachtree St NE. Si hay concierto u obra: el interior es un palacio mogol de 1929. Merece aunque no entréis. Compra de shows en su web.", tag: "turístico", ticket: "https://www.foxtheatre.org/events", maps: "Fox Theatre, 660 Peachtree St NE, Atlanta, GA" },
           { title: "Midtown rooftop + cocktail", desc: "El barrio con más vida nocturna 'normal' y mejor iluminado para pasear tras la copa.", tag: "noche", maps: "Midtown, Atlanta" }
         ]
       }
@@ -329,7 +329,7 @@ const DAYS = [
       {
         slot: "tarde", title: "Tras el partido (~16:30)",
         options: [
-          { title: "Mercedes-Benz Stadium Tour", desc: "Si os quedáis: tour guiado por el estadio de los Falcons y Atlanta United (MLS). ~$25. Verificad horarios el mismo día.", tag: "deporte", price: "~$25", maps: "Mercedes-Benz Stadium, 1 AMB Dr NW, Atlanta, GA" },
+          { title: "Mercedes-Benz Stadium Tour", desc: "Si os quedáis: tour guiado por el estadio de los Falcons y Atlanta United (MLS). ~$25. Verificad horarios el mismo día.", tag: "deporte", price: "~$25", ticket: "https://www.mercedesbenzstadium.com/stadium-tours", maps: "Mercedes-Benz Stadium, 1 AMB Dr NW, Atlanta, GA" },
           { title: "Regreso a casa a descansar", desc: "Mañana hay que conducir a Orlando: cena ligera y cero despedidas épicas.", tag: "logística" }
         ]
       },
@@ -381,7 +381,7 @@ const DAYS = [
       {
         slot: "estrategia", title: "Cómo sobrevivir al día",
         options: [
-          { title: "★ Lightning Lane Multi Pass", desc: "Disney cobra por saltar colas: compradlo en la app MDE desde España (se puede hacer con hora España). Sin esto, Galaxy's Edge y Slinky Dog pueden superar 90 min.", tag: "estrategia", price: "varía por día, típico $25–40/persona" },
+          { title: "★ Lightning Lane Multi Pass", desc: "Disney cobra por saltar colas: compradlo en la app MDE desde España (se puede hacer con hora España). Sin esto, Galaxy's Edge y Slinky Dog pueden superar 90 min.", tag: "estrategia", price: "varía por día, típico $25–40/persona", ticket: "https://disneyworld.disney.go.com/lightning-lane-passes/" },
           { title: "Prioridad de atracciones", desc: "1) Rise of the Resistance (Star Wars, la mejor del parque) 2) Mickey & Minnie's Runaway Railway 3) Slinky Dog Dash 4) Tower of Terror 5) Toy Story Mania", tag: "estrategia" },
           { title: "★ Rise of la Resistance: cuándo compensa", desc: "Sin Lightning Lane: subid ~11:00, que es cuando baja tras la primera hora embestida. Aún mejor, la última hora y media: los 30 minutos finales del día son los más cortos de todo el parque. OJO: desde las 18:00 Disney infla los tiempos publicados — el reloj miente, la cola no.", tag: "estrategia" },
           { title: "Abrir el parque con los de atrás", desc: "Llegad a la hora de apertura real (no 30 min tarde): las primeras 90 min rinden el doble que el resto del día.", tag: "estrategia" }
@@ -408,7 +408,7 @@ const DAYS = [
         options: [
           { title: "★ Orden de atracciones", desc: "1) Hagrid's en cuanto abráis: es la cola más larga del resort (90–120 min en pico) 2) VelociCoaster antes de las 11:00 3) Forbidden Journey (Hogwarts) 4) Hulk y Spider-Man a media tarde, cuando el resto está en Potter. Si Hagrid supera los 90: single rider.", tag: "estrategia" },
           { title: "★ Hagrid's: cuándo compensa de verdad", desc: "Early Entry 08:00 solo si dormís en hotel Universal (vosotros no: The Point no es partner). Sin eso, la apertura es ~75–80 min y luego se queda en 55–65 todo el día: la franja más floja es hacia las 15:00. Y no la dejéis para el cierre, que se llena.", tag: "estrategia" },
-          { title: "Express Pass: ¿vale?", desc: "IOA nov: desde ~$109–174/día. Solo merece si vais un sábado o no toleráis colas. Con estrategia (apertura + Hagrid primero) se puede sin él.", tag: "estrategia", price: "$109–174" },
+          { title: "Express Pass: ¿vale?", desc: "IOA nov: desde ~$109–174/día. Solo merece si vais un sábado o no toleráis colas. Con estrategia (apertura + Hagrid primero) se puede sin él.", tag: "estrategia", price: "$109–174", ticket: "https://www.universalorlando.com/web/en/us/tickets" },
           { title: "Isla de los Cerditos / Hogsmeade", desc: "Zona Harry Potter: Butterbeer (obligatorio), wand experience y Hogwarts Express (requiere park-to-park, no lo tenéis en ticket base).", tag: "turístico", price: "Butterbeer ~$8" }
         ]
       },
@@ -433,7 +433,7 @@ const DAYS = [
         options: [
           { title: "★ Orden de ataques", desc: "1) Mario Kart en la primera hora (20 min al abrir, ~80 dos horas después) 2) Mine-Cart Madness antes de las 12:00 3) Stardust Racers cuando toque sombra 4) Battle at the Ministry SIEMPRE al final del día. Nov media semana: esperas 30–50% por debajo del verano.", tag: "estrategia" },
           { title: "★ Los huecos reales (cuándo se pone feo)", desc: "Mine-Cart pico ~120 a media mañana y ~75 a las 18:00. Ministry cae desde las 18:00 y hace ~35 min en la última hora antes de las 20:00. Dark Universe no entra en Early Entry: primeros 60 min del día = su ventana. Stardust es fácil todo el día (media 15–20 min).", tag: "estrategia" },
-          { title: "Express Pass Epic: ¿vale?", desc: "Desde ~$200/persona, puede llegar a $330 en picos. En noviembre entre semana, con apertura puntual, no hace falta. Gastad el dinero en la tienda.", tag: "estrategia", price: "$200–330" },
+          { title: "Express Pass Epic: ¿vale?", desc: "Desde ~$200/persona, puede llegar a $330 en picos. En noviembre entre semana, con apertura puntual, no hace falta. Gastad el dinero en la tienda.", tag: "estrategia", price: "$200–330", ticket: "https://www.universalorlando.com/web/en/us/tickets" },
           { title: "Las 5 'worlds'", desc: "Super Nintendo World, Ministry of Magic (HP), How to Train Your Dragon, Dark Universe (monstruos clásicos) y Celestial Park (el centro con fuente). Caminad todas aunque solo montéis dos atracciones: la theming es el show.", tag: "turístico" }
         ]
       },
@@ -502,7 +502,7 @@ const DAYS = [
       {
         slot: "noche", title: "★ SÁBADO: salsa night",
         options: [
-          { title: "★ Ball & Chain (¡es sábado!)", desc: "851 SW 8th St. Desde 1935 el templo de la salsa en Miami. Los sábados hay baile en vivo: si no sabéis bailar, aprenden. Copas + orquesta = la mejor noche del viaje.", tag: "noche", price: "cover ~$10–20", maps: "Ball & Chain, 851 SW 8th St, Miami, FL" },
+          { title: "★ Ball & Chain (¡es sábado!)", desc: "851 SW 8th St. Desde 1935 el templo de la salsa en Miami. Los sábados hay baile en vivo: si no sabéis bailar, aprenden. Copas + orquesta = la mejor noche del viaje.", tag: "noche", price: "cover ~$10–20", ticket: "https://www.ballandchainmiami.com/", maps: "Ball & Chain, 851 SW 8th St, Miami, FL" },
           { title: "Alternativa: Wynwood de noche", desc: "Gramps (dive con food truck), Wood Tavern (música en vivo) o rooftop. Más joven y menos turístico que South Beach.", tag: "noche", maps: "Gramps, 28 NE 24th St, Miami, FL" },
           { title: "Alternativa: club grande de South Beach", desc: "LIV en el Fontainebleau: cover $40–60, código de vestimenta estricto, reservad mesa si queréis algo serio. El extremo opuesto a Ball & Chain.", tag: "noche", price: "cover $40–60", maps: "LIV Nightclub, 4441 Collins Ave" }
         ]
@@ -1022,7 +1022,7 @@ const CHECKLISTS = [
 
 const TIPS = {
   practical: [
-    { t: "Reloj español", d: "VENTAJA: coméis a las 14:00 y cenáis a las 21:30, cuando los locales ya terminaron (comida 11:30–14:00, cena 18:00–20:00). Resultado: mesas libres y colas cortas en cualquier sitio. Único límite: las cocinas cierran con el servicio — BBQ cierra 20:00–21:00 y los restaurantes de parque, al cerrar el parque. Regla: para BBQ y food halls, id A las 14:00 o a primera hora de noche; lo demás aguanta vuestra hora." },
+    { t: "Reloj español", d: "VENTAJA: coméis a las 14:00 y cenáis a las 21:30, cuando los locales ya terminaron (comida 11:30–14:00, cena 18:00–20:00): mesas libres y colas cortas. No es una norma — comer un poco antes o después no le pasa nada a nadie — pero si un plan encaja mejor a vuestra hora, aprovechadla, sobre todo en BBQ, food halls y mercados: ahí sí reducirá la cola. Único límite real: las cocinas cierran con el servicio (BBQ ~20:00–21:00; los restaurantes de parque, al cerrar el parque)." },
     { t: "Propinas", d: "18–20% en restaurante (dejadlo en efectivo o en el ticket). $1–2 por copa en bar. $3–5 al portero del hotel. En fast food NO se propina. Taxistas 15–20%." },
     { t: "Impuestos", d: "El precio que veis en la etiqueta NO incluye el sales tax: se suma en caja (TX ~8.25%, GA ~8.9%, FL 6–7%). Contad +8–9% al total mental." },
     { t: "Propinas y grupos", d: "Restaurantes suelen añadir 'service charge' automático para grupos de 6+: mirad el ticket antes de añadir más." },

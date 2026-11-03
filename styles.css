@@ -1988,3 +1988,55 @@ html[data-theme="postcard"] .opt__hours::before,
 html[data-theme="postcard"] .opt__dist::before,
 html[data-theme="postcard"] .eat__hours::before,
 html[data-theme="postcard"] .near__hours::before { color: var(--orl, var(--accent)); }
+
+/* ── enlaces de compra de entradas (planes) ── */
+
+.opt__buy {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-left: 1px solid var(--line);
+  padding: 0 10px;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.opt__buy:hover { background: var(--ink); color: var(--bg); }
+
+.stub__side {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+}
+
+.stub__side .opt__maps {
+  border-left: 0;
+  border: 1px solid var(--paper-ink);
+  padding: 7px 10px;
+}
+
+.stub__buy {
+  display: block;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 7px 10px;
+}
+
+.stub__buy:hover { background: var(--paper-ink); color: var(--paper); }

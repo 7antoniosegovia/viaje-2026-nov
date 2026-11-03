@@ -261,7 +261,9 @@
           if (f.price) html += '<div class="stub__price">' + esc(f.price) + "</div>";
           if (f.extra) html += '<div class="stub__price">' + esc(f.extra) + "</div>";
           html += "</div>";
-          html += mapsLink(f.maps, "Mapa");
+          html += '<div class="stub__side">' + mapsLink(f.maps, "Mapa") +
+            (f.ticket ? '<a class="stub__buy" href="' + esc(f.ticket) + '" target="_blank" rel="noopener">Entradas ↗</a>' : "") +
+            "</div>";
           html += "</div>";
         });
         html += "</div>";
@@ -295,6 +297,7 @@
               if (dk > 0.05) html += '<span class="opt__dist">' + fmtKm(dk) + " del alojamiento</span>";
             }
             html += "</span></label>";
+            if (op.ticket) html += '<a class="opt__buy" href="' + esc(op.ticket) + '" target="_blank" rel="noopener">Entradas</a>';
             html += mapsLink(op.maps, "Mapa");
             html += nearBtn(opAnchor || stayAnchor, day.city, dayLabel);
             html += "</div>";
