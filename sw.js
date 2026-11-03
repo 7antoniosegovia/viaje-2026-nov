@@ -1,4 +1,4 @@
-var CACHE = "ruta-sur-v5";
+var CACHE = "ruta-sur-v6";
 var PRECACHE = [
   "./",
   "index.html",

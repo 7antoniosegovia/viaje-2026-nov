@@ -59,6 +59,7 @@
   }
 
   var NEAR = [];
+  var PLANS = [];
 
   function nearBtn(anchor, cityCode, label) {
     if (!anchor || !cityCode) return "";
@@ -121,6 +122,27 @@
         "</div>";
     });
     openSheet("Comer cerca · " + c.name, h);
+  }
+
+  function planModal(i) {
+    var pl = PLANS[i];
+    if (!pl) return;
+    var h = '<p class="sheet__sub">' + esc(pl.where) + "</p>";
+    var meta = [];
+    if (pl.price) meta.push(esc(pl.price));
+    if (pl.hours) meta.push("Horario: " + esc(pl.hours));
+    if (pl.dist) meta.push(esc(pl.dist));
+    if (meta.length) h += '<p class="plan-meta">' + meta.join(" · ") + "</p>";
+    h += '<p class="plan-desc">' + esc(pl.desc || "Sin descripción: el detalle completo está en la pestaña Días.") + "</p>";
+    h += '<div class="plan-acts">';
+    if (pl.maps) h += '<a href="' + esc(maps(pl.maps)) + '" target="_blank" rel="noopener">Mapa</a>';
+    if (pl.ticket) h += '<a class="is-buy" href="' + esc(pl.ticket) + '" target="_blank" rel="noopener">Entradas</a>';
+    if (pl.anchor && pl.city) {
+      var ni = NEAR.push({ a: pl.anchor, city: pl.city, label: pl.where + " · " + pl.title }) - 1;
+      h += '<button type="button" data-near="' + ni + '">Comer cerca</button>';
+    }
+    h += "</div>";
+    openSheet(pl.title, h);
   }
 
   function routeModal(p) {
@@ -354,26 +376,25 @@
   var PLAN_EX_TAG = { "logística": 1, "ruta": 1 };
 
   function cityPlans(code) {
-    var groups = [];
+    var items = [];
     DAYS.forEach(function (day) {
       if (day.city !== code) return;
-      var items = [];
       (day.fixed || []).forEach(function (f) {
-        if (f.ticket) items.push({ src: f, slot: f.time });
+        if (f.ticket) items.push({ day: day, slot: f.time, src: f });
       });
       (day.blocks || []).forEach(function (b) {
         if (PLAN_EX_SLOT[b.slot]) return;
         (b.options || []).forEach(function (o) {
           if (PLAN_EX_TAG[String(o.tag || "").toLowerCase()]) return;
-          items.push({ src: o, slot: b.slot });
+          items.push({ day: day, slot: b.slot, src: o });
         });
       });
-      if (items.length) groups.push({ day: day, items: items });
     });
-    return groups;
+    return items;
   }
 
   function renderCities() {
+    PLANS = [];
     var tabs = "";
     var panels = "";
     var keys = Object.keys(CITIES);
@@ -405,35 +426,42 @@
       }
 
       /* lista de planes de la ciudad (referencia si no se sigue la ruta) */
-      var planGroups = cityPlans(k);
-      var planCount = planGroups.reduce(function (n, g) { return n + g.items.length; }, 0);
+      var planItems = cityPlans(k);
+      var planCount = planItems.length;
       var stayAnchor = c.stay ? (poiCoords(c.stay.name + ", " + c.stay.addr) || poiCoords(c.stay.addr)) : null;
       p += '<div class="city-block"><details class="plans"><summary>Planes <i>(' + planCount + ")</i></summary>";
-      planGroups.forEach(function (g) {
-        var dayLabel = g.day.day + " " + Number(g.day.date.slice(8));
-        p += '<div class="plans__day"><b>' + esc(dayLabel) + "</b><span>" + esc(g.items.length) + " planes</span></div>";
-        g.items.forEach(function (it) {
-          var o = it.src;
-          var anchor = poiCoords(o.maps) || stayAnchor;
-          var tagLabel = o.tag || it.slot || "";
-          p += '<div class="cplan">';
-          p += '<div class="cplan__main"><span class="opt__tag" data-tag="' + esc(normTag(tagLabel)) + '">' + esc(tagLabel) + "</span>";
-          p += "<b>" + esc(o.title) + "</b>";
-          var meta = [];
-          if (o.price) meta.push(o.price);
-          if (o.hours) meta.push(o.hours);
-          if (anchor && stayAnchor) {
-            var dk = haversine(anchor, stayAnchor);
-            if (dk > 0.05) meta.push(fmtKm(dk) + " del alojamiento");
-          }
-          if (meta.length) p += '<span class="cplan__meta">' + esc(meta.join(" · ")) + "</span>";
-          p += "</div>";
-          p += '<div class="cplan__acts">';
-          if (o.ticket) p += '<a class="cplan__buy" href="' + esc(o.ticket) + '" target="_blank" rel="noopener">Entradas</a>';
-          if (o.maps) p += '<a class="cplan__map" href="' + esc(maps(o.maps)) + '" target="_blank" rel="noopener">Mapa</a>';
-          p += nearBtn(anchor, k, dayLabel + " · " + o.title);
-          p += "</div></div>";
+      planItems.forEach(function (it) {
+        var o = it.src;
+        var anchor = poiCoords(o.maps) || stayAnchor;
+        var tagLabel = o.tag || it.slot || "";
+        var dayLabel = it.day.day + " " + Number(it.day.date.slice(8));
+        var where = dayLabel + " nov · " + it.slot;
+        var distText = "";
+        if (anchor && stayAnchor) {
+          var dk = haversine(anchor, stayAnchor);
+          if (dk > 0.05) distText = fmtKm(dk) + " del alojamiento";
+        }
+        PLANS.push({
+          title: o.title, desc: o.desc || o.meta || "", where: where,
+          price: o.price || "", hours: o.hours || "", dist: distText,
+          maps: o.maps || "", ticket: o.ticket || "", anchor: anchor, city: k
         });
+        var pi = PLANS.length - 1;
+        var meta = [dayLabel];
+        if (o.price) meta.push(o.price);
+        if (o.hours) meta.push(o.hours);
+        if (distText) meta.push(distText);
+        p += '<div class="cplan">';
+        p += '<div class="cplan__main"><span class="opt__tag" data-tag="' + esc(normTag(tagLabel)) + '">' + esc(tagLabel) + "</span>";
+        p += "<b>" + esc(o.title) + "</b>";
+        p += '<span class="cplan__meta">' + esc(meta.join(" · ")) + "</span>";
+        p += "</div>";
+        p += '<div class="cplan__acts">';
+        p += '<button type="button" class="cplan__more" data-plan="' + pi + '" title="Qué es esto">+</button>';
+        if (o.ticket) p += '<a class="cplan__buy" href="' + esc(o.ticket) + '" target="_blank" rel="noopener">Entradas</a>';
+        if (o.maps) p += '<a class="cplan__map" href="' + esc(maps(o.maps)) + '" target="_blank" rel="noopener">Mapa</a>';
+        p += nearBtn(anchor, k, where + " · " + o.title);
+        p += "</div></div>";
       });
       if (!planCount) p += '<p class="cplan__empty">Sin planes listados.</p>';
       p += "</details></div>";
@@ -656,6 +684,12 @@
         e.preventDefault();
         var d = NEAR[Number(n.getAttribute("data-near"))];
         if (d) nearbyModal(d.a, d.city, d.label);
+        return;
+      }
+      var pl = e.target.closest && e.target.closest("[data-plan]");
+      if (pl) {
+        e.preventDefault();
+        planModal(Number(pl.getAttribute("data-plan")));
         return;
       }
       var r = e.target.closest && e.target.closest("[data-route]");
