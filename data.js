@@ -10,22 +10,22 @@ const TRIP = {
 };
 
 const RESERVAS = {
-  note: "✎ Siguen pendientes: vuelta del 22 nov desde Miami y alojamiento de Miami. Todo lo demás ya está reservado.",
+  note: "✎ Todo reservado: vuelos (vuelta TAP 22 nov desde Miami), hoteles (Miami: Liberty Park), coche de alquiler y entradas.",
   vuelos: [
     { id: "v1", label: "Ida internacional", detail: "Vueling VLC→BCN 07:30–08:40 + IB4587 BCN→DFW 10:40–15:00", extra: "Vie 6 nov · llega a la Terminal D. Check-in del hotel 15:00 → partido 19:00: sin perder el tiempo." },
     { id: "v2", label: "Dallas → Atlanta", detail: "Delta DL961 · DFW 12:23 → ATL 15:26", extra: "Lun 9 nov · 3h de vuelo: llegáis 3,5 h antes del partido. Margen de sobra." },
-    { id: "v3", label: "Vuelta internacional", detail: "pendiente", extra: "dom 22 nov desde Miami (MIA) · llegada 23 nov" }
+    { id: "v3", label: "Vuelta internacional", detail: "TAP Portugal TP226 + TP1094 · MIA 23:50 → VLC 17:30 (+1)", extra: "Dom 22 nov · 1 escala · 11 h 40 min · Turista. Sale de Miami a las 23:50 del 22 y llega a Valencia el lun 23 nov a las 17:30." }
   ],
   hoteles: [
     { city: "DAL", dates: "6–9 nov (3 noches)", detail: "Magnolia Hotel Downtown Dallas", extra: "1401 Commerce St (Main St District). AAC a 1,2 mi / 25 min andando. Check-in 15:00, check-out 11:00." },
     { city: "ATL", dates: "9–16 nov (7 noches)", detail: "Designer 1BR Loft · Altitude", extra: "250 Piedmont Ave NE, junto a la estación MARTA Peachtree Center. Cocina: la compra de la semana sale aquí." },
     { city: "ORL", dates: "16–20 nov (4 noches)", detail: "The Point Hotel & Suites", extra: "7389 Universal Blvd. Suites con cocina. Islas de Aventura 5 min · Epic 9 min · Disney 12 min." },
-    { city: "MIA", dates: "20–22 nov (2 noches)", detail: "pendiente", extra: "" }
+    { city: "MIA", dates: "20–22 nov (2 noches)", detail: "Liberty Park Hotel South Beach", extra: "236 21st St, Miami Beach FL 33139 (junto a Collins Park). Check-in 16:00 · check-out 11:00. Playa a 2 cuadras, Lincoln Road a 0,5 mi, MIA a ~10 mi." }
   ],
   coche: {
     label: "Coche de alquiler",
     detail: "Recogida ATL 16 nov → devolución MIA 22 nov",
-    extra: "Confirmar: recogida en el aeropuerto ATL, devolución en MIA (tram al centro de alquileres, dar 2h antes del vuelo)"
+    extra: "Confirmar recogida en ATL. Devolución en MIA: el tram del centro de alquileres a las terminales es gratis — con vuelo a las 23:50, devolved el coche ~20:30–21:00."
   },
   entradas: [
     { label: "Mavericks ×2", detail: "vie 6 + dom 8 nov, AAC", extra: "guardar PDFs/billetera" },
@@ -513,7 +513,7 @@ const DAYS = [
     id: "nov22", date: "2026-11-22", day: "DOM", city: "MIA", cityLabel: "Miami",
     weather: { hi: 28, lo: 21, note: "Vuelta a casa" },
     fixed: [
-      { time: "tarde/noche", title: "Vuelo de vuelta desde MIA", meta: "confirmar hora · llegar al aeropuerto 3h antes (internacional)", price: "", extra: "Centro de devolución de coches: tram gratuito a las terminales" }
+      { time: "tarde/noche", title: "Vuelo de vuelta MIA → VLC (TAP)", meta: "TP226 + TP1094 · MIA 23:50 → VLC 17:30 (+1) · 1 escala · 11 h 40 · Turista", price: "", extra: "Llegad al aeropuerto ~20:50 (3 h antes). Centro de devolución de coches: tram gratuito a las terminales." }
     ],
     blocks: [
       {
@@ -526,8 +526,8 @@ const DAYS = [
       {
         slot: "mediodía", title: "Logística del vuelo",
         options: [
-          { title: "★ Devolver el coche con margen", desc: "El centro de alquileres de MIA está a 15 min del aeropuerto y el tram es gratis, pero dadle 2–3h antes del vuelo internacional: revisión, tránsito del viernes→domingo y cola de facturación.", tag: "logística", maps: "MIA Rental Car Center" },
-          { title: "Si el vuelo es muy tarde", desc: "Wynwood o Design District como último paseo (dejando el coche ya devuelto y un Uber al centro).", tag: "logística", maps: "Design District, Miami" }
+          { title: "★ Devolver el coche con margen", desc: "El vuelo es a las 23:50: el centro de alquileres de MIA está a 15 min del aeropuerto y el tram es gratis, pero devolved ~20:30–21:00 (revisión, tránsito y cola de facturación).", tag: "logística", maps: "MIA Rental Car Center" },
+          { title: "Sobra la tarde: último paseo", desc: "Con el coche devuelto por la tarde, Wynwood o Design District como despedida (Uber de vuelta al centro). El vuelo no es hasta las 23:50.", tag: "logística", maps: "Design District, Miami" }
         ]
       }
     ]
@@ -655,6 +655,10 @@ const CITIES = {
   MIA: {
     name: "Miami", state: "Florida", nights: "2 noches", tz: "EST",
     weather: "28°/21° — tropical, posibles aguaceros cortos. Bañador, protector, gafas de sol.",
+    stay: {
+      name: "Liberty Park Hotel South Beach", addr: "236 21st St",
+      note: "Miami Beach, junto a Collins Park (recepción en el Boulan South Beach, 220 21st St). Playa a 2 cuadras · Lincoln Road a 0,5 mi · Ocean Drive a ~1 mi. Check-in 16:00 · check-out 11:00. MIA a ~10 mi / 25–35 min: para el vuelo de las 23:50 salid del hotel ~20:30."
+    },
     safety: {
       zones: [
         { area: "South Beach (Ocean Drive, Collins, Lincoln)", status: "ok", note: "Turístico y patrullado 24h. Cuidado con móviles en la playa y en terrazas: ratero rápido." },
@@ -791,6 +795,7 @@ const POI = {
   "dr phillips": [28.3730, -81.4360],
   "kennedy space center": [28.5235, -80.6500],
   // Miami
+  "liberty park hotel": [25.7964, -80.1298],
   "wynwood walls": [25.8010, -80.1990],
   "wynwood": [25.8010, -80.1990],
   "little havana": [25.7640, -80.2190],

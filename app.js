@@ -239,7 +239,7 @@
     h += '<p class="res-row" style="border:0;padding-top:12px"><span class="val" style="text-align:left">' + esc(RESERVAS.note) + "</span></p>";
 
     $("#reservas-body").innerHTML = h;
-    $("#res-pend").textContent = pend + " pendiente" + (pend === 1 ? "" : "s");
+    $("#res-pend").textContent = pend ? pend + " pendiente" + (pend === 1 ? "" : "s") : "todo reservado";
   }
 
   /* ── días ── */
